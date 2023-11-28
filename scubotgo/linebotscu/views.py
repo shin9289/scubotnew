@@ -1,4 +1,5 @@
 import gspread
+import requests
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest,HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
@@ -51,12 +52,14 @@ def handle_text_message(event):
         data = get_google_sheets_data()
 
         # 將Google Sheets數據發送給使用者
-        line_bot_api.reply_message(
+        try:
+            line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=data)
-        )
-        
-        return(data)
+            )
+        except LineBotApiError as e:
+            print(f"LineBot API Error: {e}")
+            # 這裡你可以處理API錯誤的情況
 
 @csrf_exempt
 def callback(request):
@@ -64,7 +67,7 @@ def callback(request):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
         try:
-               events = parser.parse(body, signature)
+               events = handler.parse(body, signature)
         except InvalidSignatureError:
                return HttpResponseForbidden()
         except LineBotApiError:

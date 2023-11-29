@@ -13,7 +13,7 @@ line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.LINE_CHANNEL_SECRET)
 
 # 初始化gspread
-gc = gspread.service_account(filename="D:/anaconda3/scubotgo/linebotscu/linebotscu.json") #這裡你下要下載json金鑰文件然後複製路徑
+gc = gspread.service_account(filename="C:\Users\吳欣晏\Desktop\scubotnew\scubotgo\linebotscu\linebotscu.json") #這裡你下要下載json金鑰文件然後複製路徑
 SPREADSHEET_ID = '1noXSpkwTT7qVeMTaOJwTPd4OM2VvLxTJ67q1FdJB59k'
 SHEET_NAME = '雙溪'
 
@@ -60,6 +60,16 @@ def handle_text_message(event):
         except LineBotApiError as e:
             print(f"LineBot API Error: {e}")
             # 這裡你可以處理API錯誤的情況
+    #最新消息
+    elif "最新消息" in received_text:
+        latest_news = func.get_latest_news()  # 调用func.py中的函数
+        try:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=latest_news)
+            )
+        except LineBotApiError as e:
+            print(f"LineBot API Error: {e}")
 
 @csrf_exempt
 def callback(request):

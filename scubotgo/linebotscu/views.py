@@ -11,7 +11,7 @@ from module import func
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.LINE_CHANNEL_SECRET)
-
+'''
 # 初始化gspread
 gc = gspread.service_account(filename="C:\Users\吳欣晏\Desktop\scubotnew\scubotgo\linebotscu\linebotscu.json") #這裡你下要下載json金鑰文件然後複製路徑
 SPREADSHEET_ID = '1noXSpkwTT7qVeMTaOJwTPd4OM2VvLxTJ67q1FdJB59k'
@@ -70,7 +70,7 @@ def handle_text_message(event):
             )
         except LineBotApiError as e:
             print(f"LineBot API Error: {e}")
-
+'''
 @csrf_exempt
 def callback(request):
     if request.method == 'POST':

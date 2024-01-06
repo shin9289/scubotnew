@@ -83,7 +83,7 @@ def callback(request):
         except LineBotApiError:
                return HttpResponseBadRequest()
 
-        for event in events:
+        for event in event:
                if isinstance(event, MessageEvent):
                      if isinstance(event.message,TextMessage):
                            mtext=event.message.text

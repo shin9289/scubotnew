@@ -19,6 +19,6 @@ from django.urls import path
 from linebotscu import views
 
 urlpatterns = [
-    path('callback/', views.callback, name='callback'),
+    path('^callback', views.callback, name='callback'),
     path('admin/', admin.site.urls),
 ]

@@ -16,12 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import re_path
 from linebotscu import views
-from linebotscu.views import callback 
 
 urlpatterns = [
-    re_path('^callback',views.callback),
-    path("admin/", admin.site.urls),
-    path('callback/',callback,name='callback'),
+    path('callback/', views.callback, name='callback'),
+    path('admin/', admin.site.urls),
 ]

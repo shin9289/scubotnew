@@ -18,7 +18,7 @@ def callback(request):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
         try:
-               events = handler.parse(body, signature)
+               events = handler.handle(body, signature)
         except InvalidSignatureError:
                return HttpResponseForbidden()
         except LineBotApiError:

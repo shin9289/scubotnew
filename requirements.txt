@@ -1,5 +1,5 @@
 Django
 line-bot-sdk==1.19.0
 gunicorn
-whitenoise[brotli]
+
 beautifulsoup4

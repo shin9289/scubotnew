@@ -1,0 +1,24 @@
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: usage: conda-script.py create [-h] [--clone env] (-n environment | -p path) [-c channel] [--use-local]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [--override-channels] [--repodata-fn repodata_fns] [--strict-channel-priority]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [--no-channel-priority] [--no-deps | --only-deps] [--no-pin] [--copy] [--no-shortcuts]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [-c] [-k] [--offline] [-d] [--json] [-q] [-v] [-y] [--download-only]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [--show-channel-urls] [--file file] [--no-default-packages]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [--experimental-solver {classic,libmamba,libmamba-draft}] [--dev]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? Invalid choice: [package_spec ...]
+WARNING: A directory already exists at the target location 'C:\Users\§dªY®Ë\Desktop\scubotnew\scubotgo'
+but it is not a conda environment.
+Continue creating environment (y/[n])? 

@@ -35,15 +35,21 @@ def handle_text_message(event):
 
     # 測試
     if "測試" in received_text:
-        func.sendText(event, '成功')
+        func.sendText(event)  # 呼叫func.py中的函式
 
     # 最新消息
     elif "最新消息" in received_text:
-        latest_news = func.get_latest_news()
+        latest_news = func.get_latest_news()  # 調用func.py中的函式
         try:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=latest_news)
-            )
+            if latest_news:  # 確保最新消息不為空
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=latest_news)
+                )
+            else:
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="抱歉，沒有找到最新消息。")
+                )
         except LineBotApiError as e:
             print(f"LineBot API Error: {e}")

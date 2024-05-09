@@ -30,13 +30,15 @@ def callback(request):
         return HttpResponseBadRequest()
 
 def handle_text_message(event):
-    user_id = event.source.user_id
+    #user_id = event.source.user_id
     received_text = event.message.text
 
     # 測試
-    if "測試" in received_text:
-        func.sendText(event)  # 呼叫func.py中的函式
-
+    if received_text=="測試":
+       func.sendText(event)  # 呼叫func.py中的函式
+    if received_text=="最新消息":
+       func.get_latest_news(event) 
+'''
     # 最新消息
     elif "最新消息" in received_text:
        latest_news = func.get_latest_news()  # 調用func.py中的函式
@@ -47,3 +49,4 @@ def handle_text_message(event):
         line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="抱歉，沒有找到最新消息。"))
+'''

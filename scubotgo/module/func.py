@@ -7,13 +7,13 @@ from linebot.models import TextSendMessage
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
-def sendText(event, message):
+def sendText(event):
     try:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='成功'))
     except:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='發送訊息時出現錯誤'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='錯誤'))
 
-def get_latest_news():
+def get_latest_news(event):
     url = "https://www-ch.scu.edu.tw/october/search?category=5"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -24,3 +24,13 @@ def get_latest_news():
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
         news_info.append(f"{title_text}\n{link_href}\n")
+
+    if news_info:
+        news_text = "\n".join(news_info)
+        try:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=news_text))
+                
+        except:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="抱歉，沒有找到最新消息。"))
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="錯誤2"))

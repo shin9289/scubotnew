@@ -29,9 +29,10 @@ def callback(request):
                      if isinstance(event.message,TextMessage):
                             mtext=event.message.text
                             if mtext =='測試':
-                                 func.sendText(event)
+                                  func.sendText(event)
                             elif mtext=='最新消息':
-                                 func.get_latest_news()
+                                   latest_news = func.get_latest_news()
+                                   func.sendText(event, latest_news)
         return HttpResponse()
     else:
          return HttpResponseBadRequest ()

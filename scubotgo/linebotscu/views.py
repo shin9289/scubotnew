@@ -1,8 +1,6 @@
-from django.shortcuts import render
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest,HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
-
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
@@ -18,21 +16,36 @@ def callback(request):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
         try:
-               events = parser.parse(body, signature)
+            events = parser.parse(body, signature)
         except InvalidSignatureError:
-               return HttpResponseForbidden()
+            return HttpResponseForbidden()
         except LineBotApiError:
-               return HttpResponseBadRequest()
+            return HttpResponseBadRequest()
 
         for event in events:
-               if isinstance(event, MessageEvent):
-                     if isinstance(event.message,TextMessage):
-                            mtext=event.message.text
-                            if mtext =='測試':
-                                  func.sendText(event)
-                            elif mtext=='最新消息':
-                                   latest_news = func.get_latest_news()
-                                   func.sendText(event, latest_news)
+            if isinstance(event, MessageEvent):
+                if isinstance(event.message, TextMessage):
+                    handle_text_message(event)  # 呼叫處理文字訊息的函式
         return HttpResponse()
     else:
-         return HttpResponseBadRequest ()
+        return HttpResponseBadRequest()
+
+
+def handle_text_message(event):
+    user_id = event.source.user_id
+    received_text = event.message.text
+
+    # 測試
+    if "測試" in received_text:
+        func.sendText(event)  # 呼叫func.py中的函式
+
+    # 最新消息
+    elif "最新消息" in received_text:
+        latest_news = func.get_latest_news()  # 調用func.py中的函式
+        try:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=latest_news)
+            )
+        except LineBotApiError as e:
+            print(f"LineBot API Error: {e}")

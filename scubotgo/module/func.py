@@ -7,14 +7,12 @@ from linebot.models import TextSendMessage
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
-def sendText(event):
+def sendText(event, message):
     try:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='成功'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
     except:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='錯誤'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='發送訊息時出現錯誤'))
 
-
-'''
 def get_latest_news():
     url = "https://www-ch.scu.edu.tw/october/search?category=5"
     res = requests.get(url, verify=False)
@@ -26,6 +24,3 @@ def get_latest_news():
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
         news_info.append(f"{title_text}\n{link_href}\n")
-
-    return "\n".join(news_info) 
-'''

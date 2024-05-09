@@ -9,7 +9,6 @@ from module import func
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
 
-
 @csrf_exempt
 def callback(request):
     if request.method == 'POST':
@@ -25,11 +24,10 @@ def callback(request):
         for event in events:
             if isinstance(event, MessageEvent):
                 if isinstance(event.message, TextMessage):
-                    handle_text_message(event)  # 呼叫處理文字訊息的函式
+                    handle_text_message(event)
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
-
 
 def handle_text_message(event):
     user_id = event.source.user_id
@@ -37,11 +35,11 @@ def handle_text_message(event):
 
     # 測試
     if "測試" in received_text:
-        func.sendText(event)  # 呼叫func.py中的函式
+        func.sendText(event, '成功')
 
     # 最新消息
     elif "最新消息" in received_text:
-        latest_news = func.get_latest_news()  # 調用func.py中的函式
+        latest_news = func.get_latest_news()
         try:
             line_bot_api.reply_message(
                 event.reply_token,

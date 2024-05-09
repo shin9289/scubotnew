@@ -39,7 +39,7 @@ def handle_text_message(event):
 
     # 最新消息
     elif "最新消息" in received_text:
-        latest_news = func.get_latest_news()  # 調用func.py中的函式
+       latest_news = func.get_latest_news()  # 調用func.py中的函式
        try:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=latest_news))
                

@@ -12,7 +12,7 @@ def sendText(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='成功'))
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='錯誤'))
-'''
+
 def get_latest_news():
     url = "https://www-ch.scu.edu.tw/october/search?category=5"
     res = requests.get(url, verify=False)
@@ -26,4 +26,3 @@ def get_latest_news():
         news_info.append(f"{title_text}\n{link_href}\n")
 
     return "\n".join(news_info) 
-'''

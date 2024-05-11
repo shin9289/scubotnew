@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from linebot import LineBotApi
-from linebot.models import TextSendMessage
+from linebot.models import TextSendMessage, FlexSendMessage
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
@@ -110,3 +110,77 @@ def academic_announcement(event):
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="錯誤2"))
 
+def menu(event):
+    carousel_template = {
+        "type": "flex",
+        "altText": "This is a Carousel Template",
+        "contents": {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://example.com/item1.jpg",
+                        "size": "full",
+                        "aspectRatio": "1:1",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Item 1",
+                                "weight": "bold",
+                                "size": "lg"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Description of Item 1",
+                                "wrap": True
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://example.com/item2.jpg",
+                        "size": "full",
+                        "aspectRatio": "1:1",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Item 2",
+                                "weight": "bold",
+                                "size": "lg"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Description of Item 2",
+                                "wrap": True
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+
+    # 建立 FlexSendMessage 物件
+    flex_message = FlexSendMessage(alt_text="This is a Carousel Template", contents=carousel_template)
+
+    
+    try:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=flex_message))
+                
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="失敗"))

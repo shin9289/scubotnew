@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbid
 from django.views.decorators.csrf import csrf_exempt
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage
 from module import func
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
@@ -44,4 +44,6 @@ def handle_text_message(event):
     if received_text=="學術活動":
        func.academic_activity(event) 
     if received_text=="學術公告":
-       func.academic_announcement(event) 
+       func.academic_announcement(event)
+    if received_text=="菜單":
+       func.menu(event) 

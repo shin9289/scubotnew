@@ -21,10 +21,11 @@ def get_latest_news(event):
     titles = soup.select('.table.table-striped tbody td a')
 
     news_info = []
+    news_info.append("🎉最新消息🎉")
     for each_title in titles[:5]:
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
-        news_info.append(f"{title_text}\n{link_href}\n")
+        news_info.append(f"\n{title_text}\n{link_href}")
 
     if news_info:
         news_text = "\n".join(news_info)

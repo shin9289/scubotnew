@@ -31,7 +31,6 @@ def callback(request):
         return HttpResponseBadRequest()
 
 def handle_text_message(event):
-    #user_id = event.source.user_id
     received_text = event.message.text
 
     # 測試

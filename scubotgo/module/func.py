@@ -176,11 +176,11 @@ def menu(event):
     }
 
     # 建立 FlexSendMessage 物件
-    flex_message = FlexSendMessage(alt_text="This is a Carousel Template", contents=carousel_template)
+    #flex_message = FlexSendMessage(alt_text="This is a Carousel Template", contents=carousel_template)
 
     
     try:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=flex_message))
+        line_bot_api.reply_message(event.reply_token,FlexSendMessage(alt_text="This is a Carousel Template", contents=carousel_template))
                 
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="失敗"))

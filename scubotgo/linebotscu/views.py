@@ -37,17 +37,11 @@ def handle_text_message(event):
     # 測試
     if received_text=="測試":
        func.sendText(event)  # 呼叫func.py中的函式
-    if received_text=="最新消息":
+    if received_text=="校園頭條":
        func.get_latest_news(event) 
-'''
-    # 最新消息
-    elif "最新消息" in received_text:
-       latest_news = func.get_latest_news()  # 調用func.py中的函式
-       try:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=latest_news))
-               
-       except:
-        line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text="抱歉，沒有找到最新消息。"))
-'''
+    if received_text=="一般公告":
+       func.get_announcement(event) 
+    if received_text=="學術活動":
+       func.academic_activity(event) 
+    if received_text=="學術公告":
+       func.academic_announcement(event) 

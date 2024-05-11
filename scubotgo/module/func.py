@@ -1,3 +1,4 @@
+
 from django.conf import settings
 import requests
 from bs4 import BeautifulSoup
@@ -17,7 +18,7 @@ def get_latest_news(event):
     url = "https://www-ch.scu.edu.tw/october/search?category=5"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
-    titles = soup.select('.table.table-striped [headers="header"] a')
+    titles = soup.select('.table.table-striped tbody td a')
 
     news_info = []
     for each_title in titles[:5]:

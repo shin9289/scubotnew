@@ -15,7 +15,7 @@ def sendText(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='錯誤'))
 
 def get_latest_news(event):
-    url = "https://www-ch.scu.edu.tw/october/search?category=5"
+    url = "https://www-news.scu.edu.tw/news-7"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')

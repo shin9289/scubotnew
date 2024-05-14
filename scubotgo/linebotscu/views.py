@@ -41,7 +41,7 @@ def handle_text_message(event):
        func.get_latest_news(event) 
     if received_text=="一般公告":
        func.get_announcement(event) 
-    if received_text=="學術活動":
+    if received_text=="學生活動":
        func.academic_activity(event) 
     if received_text=="學術公告":
        func.academic_announcement(event)

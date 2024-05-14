@@ -23,7 +23,7 @@ def get_latest_news(event):
 
     news_info = []
     news_info.append("🎉校園頭條🎉")
-    for each_title in titles[:5]:
+    for each_title in titles[:10]:
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
         news_info.append(f"\n{title_text}\n{link_href}")
@@ -47,7 +47,7 @@ def get_announcement(event):
 
     news_info = []
     news_info.append("🎉一般公告🎉")
-    for each_title in titles[:5]:
+    for each_title in titles[:10]:
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
         news_info.append(f"\n{title_text}\n{link_href}")
@@ -64,13 +64,13 @@ def get_announcement(event):
 
 #學術活動
 def academic_activity(event):
-    url = "https://www-news.scu.edu.tw/news-4"
+    url = "https://www-news.scu.edu.tw/news-5"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
 
     news_info = []
-    news_info.append("🎉學術活動🎉")
+    news_info.append("🎉學生活動🎉")
     for each_title in titles[:5]:
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
@@ -88,14 +88,14 @@ def academic_activity(event):
 
 #學術公告
 def academic_announcement(event):
-    url = "https://www-news.scu.edu.tw/news-5"
+    url = "https://www-news.scu.edu.tw/news-4"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
 
     news_info = []
     news_info.append("🎉學術公告🎉")
-    for each_title in titles[:5]:
+    for each_title in titles[:10]:
         title_text = each_title.text.strip()
         link_href = each_title['href'].strip()
         news_info.append(f"\n{title_text}\n{link_href}")
@@ -109,7 +109,7 @@ def academic_announcement(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text="抱歉，沒有找到最新消息。"))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="錯誤2"))
-
+'''
 def menu(event):
     carousel_template = {
         "type": "flex",
@@ -184,3 +184,4 @@ def menu(event):
                 
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="失敗"))
+'''

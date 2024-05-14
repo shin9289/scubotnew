@@ -31,6 +31,7 @@ def callback(request):
         return HttpResponseBadRequest()
 
 def handle_text_message(event):
+    #user_id = event.source.user_id
     received_text = event.message.text
 
     # 測試
@@ -44,5 +45,5 @@ def handle_text_message(event):
        func.academic_activity(event) 
     if received_text=="學術公告":
        func.academic_announcement(event)
-    if received_text=="菜單":
-       func.menu(event) 
+    #if received_text=="菜單":
+    #   func.menu(event) 

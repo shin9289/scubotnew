@@ -16,7 +16,7 @@ def sendText(event):
 
 #校園頭條
 def get_latest_news(event):
-    url = "https://www-news.scu.edu.tw/news-7"
+    url = "https://news.scu.edu.tw/news-7"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
@@ -40,7 +40,7 @@ def get_latest_news(event):
 
 #一般公告
 def get_announcement(event):
-    url = "https://www-news.scu.edu.tw/news-3"
+    url = "https://news.scu.edu.tw/news-3"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
@@ -64,7 +64,7 @@ def get_announcement(event):
 
 #學術活動
 def academic_activity(event):
-    url = "https://www-news.scu.edu.tw/news-5"
+    url = "https://news.scu.edu.tw/news-5"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
@@ -88,7 +88,7 @@ def academic_activity(event):
 
 #學術公告
 def academic_announcement(event):
-    url = "https://www-news.scu.edu.tw/news-4"
+    url = "https://news.scu.edu.tw/news-4"
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     titles = soup.select('.table.table-striped tbody td a')
